@@ -18,11 +18,11 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public void createProduct(ProductRequest productRequest) {
-        Product product = Product.builder()
-                .name(productRequest.getName())
-                .description(productRequest.getDescription())
-                .price(productRequest.getPrice())
-                .build();
+        Product product = new Product(); // ✅ Create new Product instance
+        product.setName(productRequest.name());  // ✅ Use direct field access (since ProductRequest is a record)
+        product.setDescription(productRequest.description());
+        product.setPrice(productRequest.price());
+
 
         productRepository.save(product);
         log.info("Product {} is saved", product.getId());
@@ -35,11 +35,11 @@ public class ProductService {
     }
 
     private ProductResponse mapToProductResponse(Product product) {
-        return ProductResponse.builder()
-                .id(product.getId())
-                .name(product.getName())
-                .description(product.getDescription())
-                .price(product.getPrice())
-                .build();
+        return new ProductResponse( // ✅ Use constructor instead of builder()
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice()
+        );
     }
 }
