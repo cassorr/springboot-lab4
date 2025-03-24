@@ -2,6 +2,7 @@ package com.programmingtechie.productservice;
 
 import com.programmingtechie.productservice.dto.ProductRequest;
 import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,17 +18,19 @@ class ProductServiceApplicationTests {
 
     @ServiceConnection
     static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:7.0.7");
+
     @LocalServerPort
     private Integer port;
+
+    static {
+        mongoDBContainer.start();
+    }
 
     @BeforeEach
     void setup() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
-    }
-
-    static {
-        mongoDBContainer.start();
+        RestAssured.defaultParser = Parser.JSON; // Ensures JSON is used if no Content-Type header
     }
 
     @Test
@@ -51,5 +54,4 @@ class ProductServiceApplicationTests {
     private ProductRequest getProductRequest() {
         return new ProductRequest("iPhone 13", "iPhone 13", BigDecimal.valueOf(1200));
     }
-
 }
