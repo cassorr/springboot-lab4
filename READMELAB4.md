@@ -1,20 +1,24 @@
-# Spring Boot Microservices
+## Client Testing
 
-# ATTENTION: This repository is archived, you can find the source code in the new repository that includes much more concepts and upto date - https://github.com/SaiUpadhyayula/spring-boot-3-microservices-course
+### POST Product in Postman
 
-The link to the new tutorial can be found here - https://www.youtube.com/playlist?list=PLSVW22jAG8pDeU80nDzbUgr8qqzEMppi8
+![POST Product](https://github.com/cassorr/springboot-lab4/blob/master/images/POSTproduct.png)
 
-This repository contains the latest source code of the spring-boot-microservices tutorial
+### GET Products from Postman
 
-You can watch the tutorial on Youtube here - https://www.youtube.com/watch?v=mPPhcU7oWDU&t=20634s
+![GET Product](https://github.com/cassorr/springboot-lab4/blob/master/images/GETproduct.png)
 
-## How to run the application using Docker
+## Post Tutorial Questions
 
-1. Run `mvn clean package -DskipTests` to build the applications and create the docker image locally.
-2. Run `docker-compose up -d` to start the applications.
+1. **Why is it important to create separate databases for each microservice (e.g., `product_service`, `order_service`, `inventory_service`)?**
 
-## How to run the application without Docker
+2. **What role does Flyway play in managing the database schema, and how does it ensure consistency across environments?**
 
-1. Run `mvn clean verify -DskipTests` by going inside each folder to build the applications.
-2. After that run `mvn spring-boot:run` by going inside each folder to start the applications.
+3. **How does Spring Data JPA simplify working with databases in each of the microservices?**
+
+4. **In the `InventoryService`, why did we use the `@Transactional(readOnly = true)` annotation, and what is its significance?**
+
+5. **In a microservices architecture, what are some challenges when ensuring communication between the Product, Order, and Inventory Services?**
+
+6. **What are the advantages of using TestContainers for integration testing with MySQL in this lab?**
 
